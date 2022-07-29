@@ -1,0 +1,15 @@
+Pitch:
+You control three characters who each have a small number of abilities that can be upgraded or replaced as you play.
+The goal is to cross a map to get to the Beacon Of Chaos which is causing evil to spread out over the land. Each time you move and fight you get an option to upgrade, but the chaos also spreads so the enemies get more difficult.
+
+In combat each character chooses one of their abilities to do each turn. Abilities look like cards, and you can see which options enemies have, but not which one they have chosen. Abilities are put on a stack each turn in order of their speed, and then execute in that order. (The enemies will usually pick first, and the cards will arrange as soon as you pick one, so you can use your first abilities position to help figure out what the enemy picked.)
+
+
+Theming (art-style):
+
+
+
+Story:
+
+
+
