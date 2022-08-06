@@ -13,7 +13,19 @@ public class CombatController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RectTransform allyRT = _unitFactory.FabricateAlly();
+        _UIManager.PlaceAlly(allyRT);
+        allyRT = _unitFactory.FabricateAlly();
+        _UIManager.PlaceAlly(allyRT);
+        allyRT = _unitFactory.FabricateAlly();
+        _UIManager.PlaceAlly(allyRT);
+
+        RectTransform enemyRT = _unitFactory.FabricateEnemy();
+        _UIManager.PlaceEnemy(enemyRT);
+        enemyRT = _unitFactory.FabricateEnemy();
+        _UIManager.PlaceEnemy(enemyRT);
+        enemyRT = _unitFactory.FabricateEnemy();
+        _UIManager.PlaceEnemy(enemyRT);
     }
 
     // Update is called once per frame

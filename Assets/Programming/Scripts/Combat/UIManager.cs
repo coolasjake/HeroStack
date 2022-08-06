@@ -5,15 +5,29 @@ using UnityEngine;
 /// <summary> Holds any UI not directly owned by a unit (e.g. end turn button) and manages interaction with them (e.g. disable during animations). </summary>
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private RectTransform AllySpace;
+    [SerializeField]
+    private RectTransform EnemySpace;
+    [SerializeField]
+    private RectTransform StackSpace;
+
+    private List<RectTransform> EnemyCards = new List<RectTransform>();
+    private List<RectTransform> AllyCards = new List<RectTransform>();
+
+    public void PlaceEnemy(RectTransform enemyRT)
     {
-        
+        enemyRT.SetParent(EnemySpace);
+        enemyRT.anchoredPosition = new Vector2(-50 - 150 * EnemyCards.Count, 0);
+
+        EnemyCards.Add(enemyRT);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlaceAlly(RectTransform allyRT)
     {
-        
+        allyRT.SetParent(AllySpace);
+        allyRT.anchoredPosition = new Vector2(50 + 150 * AllyCards.Count, 0);
+
+        AllyCards.Add(allyRT);
     }
 }

@@ -5,19 +5,24 @@ using UnityEngine;
 /// <summary> Create units from prefabs (or scriptables) on behalf of the GameController, and stores references that scripts can access to interact with units. </summary>
 public class UnitFactory : MonoBehaviour
 {
-    public string enemyDirectory;
-    private List<Unit> enemies = new List<Unit>();
-    private List<Unit> heroes = new List<Unit>();
+    public GameObject testEnemyPre;
+    public GameObject testAllyPre;
 
-    // Start is called before the first frame update
-    void Start()
+    //public string enemyDirectory;
+    private List<Unit> enemies = new List<Unit>();
+    private List<Unit> allies = new List<Unit>();
+
+    public RectTransform FabricateAlly()
     {
-        
+        GameObject GO = Instantiate(testAllyPre);
+        allies.Add(GO.GetComponent<Unit>());
+        return GO.GetComponent<RectTransform>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public RectTransform FabricateEnemy()
     {
-        
+        GameObject GO = Instantiate(testEnemyPre);
+        enemies.Add(GO.GetComponent<Unit>());
+        return GO.GetComponent<RectTransform>();
     }
 }

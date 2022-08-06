@@ -9,7 +9,7 @@ public class UnitScriptable : ScriptableObject
 
     [Header("Gameplay")]
     public int health = 1;
-    public List<Ability> abilities;
+    public List<AbilityScriptable> abilities;
 
     [Header("Assets")]
     public Sprite image;
