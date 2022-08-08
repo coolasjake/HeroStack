@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //[CreateAssetMenu(fileName = "AbilityName", menuName = "GameData/Ability", order = 2)]
-public class AbilityScriptable : ScriptableObject
+public abstract class AbilityScriptable : ScriptableObject
 {
     [Header("Gameplay")]
     [Tooltip("Smaller numbers are faster. Should be in 1-10 range, but any number including negatives will work.")]
@@ -13,6 +13,7 @@ public class AbilityScriptable : ScriptableObject
 
     [Header("Assets")]
     public Sprite image;
+
     //public GameObject animation;
     public bool canTargetFriendly = false;
     public bool canTargetEnemy = true;
@@ -20,5 +21,24 @@ public class AbilityScriptable : ScriptableObject
     public virtual string GenerateText()
     {
         return text;
+    }
+
+    public virtual void Execute(Unit caster, Unit target, CombatController controller)
+    {
+        if (target != null)
+        {
+            Debug.Log("Did nothing to " + target.name);
+        }
+        else
+        {
+            if (canTargetEnemy && canTargetFriendly)
+                Debug.Log("Did nothing to everyone");
+            else if (canTargetEnemy)
+                Debug.Log("Did nothing to enemies");
+            else if(canTargetFriendly)
+                Debug.Log("Did nothing to allies");
+            else
+                Debug.Log("Did nothing to nobody");
+        }
     }
 }

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2878a7cdf79d79d4db29ca93d98705db, type: 3}
+  m_Script: {fileID: 11500000, guid: dc5a784bb852c6847908aeb773ee45b0, type: 3}
   m_Name: TestSlowAttack
   m_EditorClassIdentifier: 
   speed: 8
   adaptableText: 0
-  text: Deal 5 damage to target enemy
-  image: {fileID: 0}
+  text: Deal # damage to target enemy
+  image: {fileID: 21300000, guid: 7d07b64c5bdc8414789e13e748501809, type: 3}
   canTargetFriendly: 0
   canTargetEnemy: 1
-  baseDamage: 5
+  damage: 1
