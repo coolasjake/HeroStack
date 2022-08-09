@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestFastHeal
   m_EditorClassIdentifier: 
   speed: 1
-  adaptableText: 0
+  adaptableText: 1
   text: Heal ally # health
   image: {fileID: 21300000, guid: 0167379fc2c3b574c81a109ba83fd2bd, type: 3}
   canTargetFriendly: 1

@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public abstract class AbilityHolder : MonoBehaviour
+public class AbilityHolder : MonoBehaviour
 {
+    public Unit testTarget;
+
+    [Header("Ally/Enemy Toggle:")]
+    public bool usedForAllies = true;
+
     private Unit _unit;
+    [Header("UI References")]
     public RectTransform rectTransform;
     public Text abilityName;
     public Text abilityDescription;
-    public List<Button> AbilitySlots = new List<Button>();
-    public List<AbilityScriptable> Abilities = new List<AbilityScriptable>();
-    private int _selectedAbility = 0;
+    public List<EventTrigger> abilitySlots = new List<EventTrigger>();
+    private List<AbilityScriptable> _abilities = new List<AbilityScriptable>();
+    private int _selectedAbility = -1;
 
     public virtual void Initialize(Unit unit, Canvas mainCanvas)
     {
@@ -22,8 +29,23 @@ public abstract class AbilityHolder : MonoBehaviour
         {
             if (i < 4)
             {
-                AbilitySlots[i].image.sprite = ability.image;
-                Abilities.Add(ability);
+                Debug.Log("Loading abilities, Index = " + i + ", ability name = " + ability.name);
+                abilitySlots[i].GetComponent<Image>().sprite = ability.image;
+                _abilities.Add(ability);
+
+                int tempIndex = i;
+                EventTrigger.Entry pDownEntry = new EventTrigger.Entry();
+                pDownEntry.eventID = EventTriggerType.PointerDown;
+                pDownEntry.callback.AddListener((data) => { SelectAbility(tempIndex); });
+                abilitySlots[i].triggers.Add(pDownEntry);
+
+                if (usedForAllies)
+                {
+                    EventTrigger.Entry dragEntry = new EventTrigger.Entry();
+                    dragEntry.eventID = EventTriggerType.BeginDrag;
+                    dragEntry.callback.AddListener((data) => { CreateStackAbility(tempIndex); });
+                    abilitySlots[i].triggers.Add(dragEntry);
+                }
             }
             ++i;
         }
@@ -35,10 +57,32 @@ public abstract class AbilityHolder : MonoBehaviour
 
     public void SelectAbility(int index)
     {
-        if (Abilities.Count > index)
+        if (_abilities.Count > index)
         {
-            abilityName.text = Abilities[index].name;
-            abilityDescription.text = Abilities[index].GenerateText();
+            _selectedAbility = index;
+            abilityName.text = _abilities[index].name;
+            abilityDescription.text = _abilities[index].GenerateText();
+        }
+    }
+
+    public void CreateStackAbility(int index)
+    {
+        if (_abilities.Count > index)
+        {
+            StackedAbility SA = new StackedAbility();
+            SA.ability = _abilities[index];
+            SA.caster = _unit;
+            CombatController.singleton.HoldAbility(SA);
+        }
+    }
+
+    public void TestExecute(int index)
+    {
+        Debug.Log("Executing index: " + index);
+        if (_abilities.Count > index)
+        {
+            Debug.Log("AbilityName = " + _abilities[index].name);
+            _abilities[index].Execute(_unit, testTarget);
         }
     }
 }

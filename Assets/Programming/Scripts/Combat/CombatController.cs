@@ -5,6 +5,8 @@ using UnityEngine;
 /// <summary> Instigates all elements of combat, including creating the managers, giving them commands and controlling combat turns.  </summary>
 public class CombatController : MonoBehaviour
 {
+    public static CombatController singleton;
+
     public UnitScriptable allyTestData;
     public UnitScriptable enemyTestData;
 
@@ -12,6 +14,16 @@ public class CombatController : MonoBehaviour
     public UnitFactory _unitFactory;
     public StackManager _stackManager;
     public UIManager _UIManager;
+
+    public StackedAbility heldAbility;
+
+    void Awake()
+    {
+        if (singleton != null)
+            Debug.LogError("Multiple CombatControllers");
+
+        singleton = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +37,9 @@ public class CombatController : MonoBehaviour
         _unitFactory.FabricateEnemy(enemyTestData, _UIManager);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void HoldAbility(StackedAbility SA)
     {
-        
+        heldAbility = SA;
+        Debug.Log("Now holding ability: " + SA.ability.name);
     }
 }

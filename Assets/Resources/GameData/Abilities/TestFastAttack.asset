@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TestFastAttack
   m_EditorClassIdentifier: 
   speed: 3
-  adaptableText: 0
+  adaptableText: 1
   text: Deal # damage to target enemy
   image: {fileID: 21300000, guid: 3bd0a4cbb471aee42b5f6fc79c6dfe87, type: 3}
   canTargetFriendly: 0

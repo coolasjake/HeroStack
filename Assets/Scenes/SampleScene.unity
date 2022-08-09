@@ -206,7 +206,7 @@ MonoBehaviour:
   testEnemyPre: {fileID: 6940340495876051385, guid: 914d21710497cea4597e69677895eda4, type: 3}
   testAllyPre: {fileID: 1283527419241894756, guid: 7139fc1f500050742b199abb7aa5e36c, type: 3}
   allyAbilityHolder: {fileID: 3856107947767147755, guid: 11fce876bf6baa0458fec857a09ae0fa, type: 3}
-  enemyAbilityHolder: {fileID: 7329569652449061885, guid: 049117612ee0fff418a1950af1148c37, type: 3}
+  enemyAbilityHolder: {fileID: 3763884367639772663, guid: 9ff825022d2ed224895bc0c23255f1fd, type: 3}
 --- !u!114 &3442211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   _unitFactory: {fileID: 3442210}
   _stackManager: {fileID: 3442209}
   _UIManager: {fileID: 3442208}
+  heldAbility: {fileID: 0}
 --- !u!222 &3442212
 CanvasRenderer:
   m_ObjectHideFlags: 0

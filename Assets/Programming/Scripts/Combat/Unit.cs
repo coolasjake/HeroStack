@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     public Image image;
+    public Text healthText;
 
     [HideInInspector]
     public UnitScriptable data;
@@ -19,6 +20,7 @@ public class Unit : MonoBehaviour
         _abilityHolder = abilityHolder;
         _abilityHolder.gameObject.SetActive(false);
         image.sprite = data.image;
+        healthText.text = _health.ToString();
     }
 
     public void ToggleAbilityHolder()
@@ -26,7 +28,15 @@ public class Unit : MonoBehaviour
         if (_abilityHolder.gameObject.activeInHierarchy == true)
             _abilityHolder.gameObject.SetActive(false);
         else
+        {
+            CombatController.singleton._unitFactory.CloseAllAbilityHolders();
             _abilityHolder.gameObject.SetActive(true);
+        }
+    }
+
+    public void CloseAbilityHolder()
+    {
+        _abilityHolder.gameObject.SetActive(false);
     }
 
     public void AttackTarget(Unit target, int damage)
@@ -41,6 +51,7 @@ public class Unit : MonoBehaviour
     {
         //Do hit/damage animation
         _health -= damage;
+        healthText.text = _health.ToString();
         AfterHitEffects(attacker);
 
         if (_health <= 0)

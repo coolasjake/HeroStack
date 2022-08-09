@@ -19,7 +19,7 @@ public class Ab_Heal : AbilityScriptable
         return text;
     }
 
-    public override void Execute(Unit owner, Unit target, CombatController controller)
+    public override void Execute(Unit owner, Unit target)
     {
         //owner. play attack animation/sfx()
         owner.AttackTarget(target, -healing);

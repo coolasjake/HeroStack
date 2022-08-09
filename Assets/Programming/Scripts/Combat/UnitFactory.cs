@@ -32,7 +32,6 @@ public class UnitFactory : MonoBehaviour
 
     public void FabricateEnemy(UnitScriptable data, UIManager _UIManager)
     {
-        Debug.Log("Making enemy, count is: " + enemies.Count);
         GameObject GO = Instantiate(testEnemyPre);
         Unit enemy = GO.GetComponent<Unit>();
         enemy.data = data;
@@ -45,5 +44,13 @@ public class UnitFactory : MonoBehaviour
         abilityHolder.Initialize(enemy, _UIManager.mainCanvas);
 
         enemy.Initialize(abilityHolder);
+    }
+
+    public void CloseAllAbilityHolders()
+    {
+        foreach (Unit unit in allies)
+            unit.CloseAbilityHolder();
+        foreach (Unit unit in enemies)
+            unit.CloseAbilityHolder();
     }
 }

@@ -23,7 +23,7 @@ public abstract class AbilityScriptable : ScriptableObject
         return text;
     }
 
-    public virtual void Execute(Unit caster, Unit target, CombatController controller)
+    public virtual void Execute(Unit caster, Unit target)
     {
         if (target != null)
         {

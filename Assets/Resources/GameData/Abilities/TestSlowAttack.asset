@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TestSlowAttack
   m_EditorClassIdentifier: 
   speed: 8
-  adaptableText: 0
+  adaptableText: 1
   text: Deal # damage to target enemy
   image: {fileID: 21300000, guid: 7d07b64c5bdc8414789e13e748501809, type: 3}
   canTargetFriendly: 0
   canTargetEnemy: 1
-  damage: 1
+  damage: 2
